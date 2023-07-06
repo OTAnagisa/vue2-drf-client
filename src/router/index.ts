@@ -4,11 +4,17 @@ import HomeView from '../views/HomeView.vue'
 
 Vue.use(VueRouter)
 
+// メニューに出すようにするのは、src\components\AppBar.vue
 const routes: Array<RouteConfig> = [
   {
     path: '/',
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/ProductList',
+    name: 'ProductList',
+    component: () => import('../views/ProductList.vue')
   },
   {
     path: '/NewsList',

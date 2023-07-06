@@ -29,12 +29,20 @@ import { Component, Vue } from 'vue-property-decorator';
 @Component
 export default class AppBar extends Vue {
   public drawer = false;
+  // https://pictogrammers.com/library/mdi/ アイコンはこちらから
+  // 個々のlinkと \src\router\index.ts のpathを一致させる必要がある
   public menuItems = [
     {
       icon: "mdi-home",
       name: "Home",
       key: "home",
       link: "/",
+    },
+    {
+      icon: "mdi-controller",
+      name: "SeatchProduct",
+      key: "SeatchProduct",
+      link: "/ProductList",
     },
     {
       icon: "mdi-bulletin-board",
