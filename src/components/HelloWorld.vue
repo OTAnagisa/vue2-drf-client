@@ -1,36 +1,19 @@
 <template>
-  <div>
-    <div v-for="(post, key) in newsList" :key="key">
-      <hr>
-      <p>カテゴリ: {{ post.category_name }}</p>
-      <p>タイトル: {{ post.title }}</p>
-      <p>内容: {{ post.contents }}</p>
-      <p>投稿日: {{ post.publication_on}}</p>
-      <hr>
-    </div>
+  <div class="hello" vertical="center" align-center>
+    <v-row justify="center">
+      <!-- 申し訳程度のカレンダー -->
+      <v-date-picker v-model="picker" color=blue></v-date-picker>
+    </v-row>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
-
-interface NewsObj {
-  title: string;
-  contents: string;
-  publication_on: string;
-  category_name: string;
-  user_name: string;
-  category_id: string;
-}
+import { Component, Vue } from 'vue-property-decorator';
 
 @Component
 export default class HelloWorld extends Vue {
-  public newsList: NewsObj[] = [];
-
-  async mounted() {
-    const result = await this.axios.get("http://127.0.0.1:8000/api/news/");
-    this.newsList = result.data;
-  }
+  // めんどくさいからタイムゾーンは考えない
+  picker = new Date().toISOString().substr(0, 10);
 }
 </script>
 
