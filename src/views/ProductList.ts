@@ -172,7 +172,7 @@ export default class ProductList extends Vue {
             brand_id: "",
         };
         // バリデーション初期化
-        (this.$refs as any).form.reset();
+        (this.$refs as any).addProduct.reset();
     }
     openAddProductDaialog() {
         this.showAddProductDialog = true;
