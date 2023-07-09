@@ -52,6 +52,9 @@
                   label="検索"
                   sigle-line
                 />
+                <v-row class="col-auto mx-2" justify="end">
+                  <v-btn @click="openAddProductDaialog"  color="blue" class="my-2">商品追加</v-btn>
+                </v-row>
           </v-card-title>
           <vue-loading 
             v-show="showLoading"
@@ -112,6 +115,70 @@
           <v-row justify="end" class="ma-0">
             <v-btn @click="save"  color="blue" class="ma-0">変更を保存</v-btn>
           </v-row>
+          <v-dialog
+            v-model="showAddProductDialog"
+            max-width="500"
+          >
+            <v-card>
+              <v-card-title>
+                商品追加
+              </v-card-title>
+              <v-card-text>
+                <v-container>
+                  <v-form ref="addProduct">
+                    <v-row>
+                      <v-text-field
+                        class="mb-8"
+                        label="商品名"
+                        hide-details="auto"
+                        v-model="addProduct.name"
+                        max="50"
+                        :rules="[rules.required, rules.maxLength]"
+                      />
+                    </v-row>
+                    <v-row>
+                      <v-text-field
+                        type="number"
+                        class="mb-8"
+                        label="仕入れ価格"
+                        hide-details="auto"
+                        v-model="addProduct.amount"
+                        :rules="[rules.required, rules.maxAmount]"
+                      />
+                    </v-row>
+                    <v-row>
+                      <v-autocomplete
+                        class="ma-0 my-2"
+                        :items="productCategoryList"
+                        item-text="name"
+                        item-value="id"
+                        v-model="addProduct.category_id"
+                        label="商品カテゴリ"
+                        :rules="[rules.required]"
+                      />
+                    </v-row>
+                    <v-row>
+                      <v-autocomplete
+                      class="ma-0 my-2"
+                        :items="brandList"
+                        item-text="name"
+                        item-value="id"
+                        v-model="addProduct.brand_id"
+                        label="ブランド"
+                        :rules="[rules.required]"
+                      />
+                    </v-row>
+                  </v-form>
+                </v-container>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer />
+                <v-btn @click="closeAddProductDialog">閉じる</v-btn>
+                <v-btn class="primary" @click="saveAddProduct">保存</v-btn>
+                <v-spacer />
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
         </v-card>
       </v-col>
     </v-row>
