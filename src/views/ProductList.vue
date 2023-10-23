@@ -10,7 +10,7 @@
     </v-snackbar>
     <v-row class="mx-6">
       <v-col class="col-auto">
-        <v-card min-width="200" max-width="400" class="px-4 pb-4">
+        <v-card width="200" class="px-4 pb-4">
           <v-card-title>
               商品検索
           </v-card-title>
@@ -42,7 +42,7 @@
         </v-card>
       </v-col>
       <v-col>
-        <v-card min-width="800" class="px-4 pb-4">
+        <v-card width="1200" class="px-4 pb-4">
           <v-card-title>
               検索結果
               <v-spacer />
@@ -66,7 +66,7 @@
             v-show="!showLoading"
             :headers="headers"
             :items="productList"
-            :items-per-page="5"
+            :items-per-page="10"
             :search="search"
             sort-by="publication_on"
             :sort-desc="true"
